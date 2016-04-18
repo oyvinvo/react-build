@@ -6,31 +6,29 @@ var pathToReact = path.resolve(node_modules, 'react/dist/react.min.js');
 module.exports = {
     context: path.resolve(__dirname),
 
-    entry: {
-        javascript: "./src/Main.jsx",
-        html: "./src/index.html"
-    },
+    entry: [
+        'webpack-dev-server/client?http://localhost:3000',
+        'webpack/hot/only-dev-server',
+        './src/Main.jsx'
+    ],
 
     output: {
-        filename: "bundle.js",
-        path: path.resolve(__dirname + "/dist")
+        path: path.join(__dirname, 'dist'),
+        filename: 'bundle.js',
+        publicPath: '/dist/'
     },
 
-    devServer: {
-        hot: true,
-        inline: true,
-        progress: true,
-        stats: 'errors-only',
-        host: process.env.HOST,
-        host: process.env.PORT
-    },
+    plugins: [
+        new webpack.HotModuleReplacementPlugin()
+    ],
 
     module: {
         loaders: [
             {
-                test: /\.jsx$/,
+                test: /\.jsx?$/,
                 exclude: /node_modules/,
-                loaders: ["react-hot", "babel-loader"]
+                loaders: ['react-hot', 'babel'],
+                include: path.join(__dirname, 'src')
             },
             {
                 test: /\.html$/,
@@ -51,8 +49,5 @@ module.exports = {
             }
         ],
         noParse: [pathToReact]
-    },
-    plugins: [
-        new webpack.HotModuleReplacementPlugin()
-    ]
+    }
 };
