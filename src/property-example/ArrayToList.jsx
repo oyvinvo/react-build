@@ -14,7 +14,7 @@ export default React.createClass({
         return {data: []};
     },
     componentDidMount() {
-      this.setState({data: [{"id": "1", "name": "per", "text":"Hiya"}, {"id": "2", "name": "Luke", "text":"yo"}]});
+      this.setState({data: [{"id": "1", "name": "Eve", "text":"Hiya"}, {"id": "2", "name": "Luke", "text":"yo"}]});
     },
     render: function() {
         var commentNodes = this.state.data.map(function(comment) {
