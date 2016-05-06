@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { routerReducer as routing } from 'react-router-redux';
 
 import * as rootActions from './rootActions';
 
@@ -17,5 +18,6 @@ default: return state;
 }
 
 export default combineReducers({
-    app
+    app,
+    routing
 });
